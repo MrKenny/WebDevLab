@@ -5,7 +5,11 @@
     <title>Title</title>
 
 
-    <link rel="stylesheet" href="css/sortable-theme-bootstrap.css">
+
+    <!--<link rel="stylesheet" href="css/sortable-theme-bootstrap.css">-->
+
+    <link rel="stylesheet" href="css/myStyle.css">
+    <script src="../../JQuery/jquery-3.3.1.slim.min.js"></script>
 
 
 </head>
@@ -27,7 +31,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
+        <tr url="http://www.example.com">
             <td>Chrome</td>
             <td>42.68%</td>
             <td data-value="2008">September 2, 2008</td>
@@ -78,6 +82,25 @@
 
 <!-- Sortable initialization -->
 <script src="js/sortable.js"></script>
+
+<script>
+
+    $('body').on('mousedown', 'tr[url]', function(e){
+        var click = e.which;
+        var url = $(this).attr('url');
+        if(url){
+            if(click == 1){
+                window.location.href = url;
+            }
+            else if(click == 2){
+                window.open(url, '_blank');
+                window.focus();
+            }
+            return true;
+        }
+    });
+
+</script>
 
 </body>
 </html>

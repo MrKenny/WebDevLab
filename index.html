@@ -3,8 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="JQuery/jquery-3.3.1.slim.min.js"></script>
+
+
+    <style>
+
+        .button {
+            background-color: #002050;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .buttonDisabled {
+            background-color: #999999;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 4px 2px;
+            cursor: default;
+        }
+    </style>
+
 </head>
 <body>
+
+
+
+<div style="width: 100%; overflow: hidden;">
+    <div class="accountInputDiv" style="width: 300px; float: left;">
+        <span style="font-size: 18px;">Partner</span>
+        <table>
+            <tbody>
+            <tr>
+                <th width="90">
+
+                </th>
+            </tr>
+            <tr>
+                <td><p>Partnernummer</p></td>
+                <td><input id="accountNumber" type="text"></td>
+            </tr>
+            <tr>
+                <td><p>Name</p></td>
+                <td><input id="accountName" type="text"></td>
+            </tr>
+            <tr>
+                <td><p>Name 2</p></td>
+                <td><input id="accountName2" type="text"></td>
+            </tr>
+            <tr>
+                <td><p>Vorname</p></td>
+                <td><input id="accountFirstname" type="text"></td>
+            </tr>
+            <!--<tr>
+                <td><p>Partner</p></td>
+                <td><input id="accountPartnerLookup" type="text"></td>
+            </tr>-->
+            <tr>
+                <td><p>Strasse</p></td>
+                <td><input id="accountStreet" type="text"></td>
+            </tr>
+            <tr>
+                <td><p>Hausnummer</p></td>
+                <td><input id="accountHousenumber" type="text"></td>
+            </tr>
+            <tr>
+                <td><p>PLZ</p></td>
+                <td><input id="accountZipcode" type="text"></td>
+            </tr>
+            <tr>
+                <td><p>Ort</p></td>
+                <td><input id="accountPlace" type="text"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody></table>
+        <br>
+        <input class="button" id="accountSearch" onclick="searchAccount()" type="button" value="Suche Partner">
+    </div>
+
+    <div class="contractInputDiv" style="margin-left: 300px;">
+
+        <span style="font-size: 18px;">Vertrag</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<table>
+        <tbody>
+
+        <tr>
+            <th width="90">
+            </th>
+        <tr>
+            <td><p>Vertrag</p></td>
+            <td><input id="contractNumber" type="text"></td>
+        </tr>
+        <tr>
+            <td><p>Strasse</p></td>
+            <td><input id="contractStreet" type="text"></td>
+        </tr>
+        <tr>
+            <td><p>Hausnummer</p></td>
+            <td><input id="contractHousenumber" type="text"></td>
+        </tr>
+        <tr>
+            <td><p>Gemeinde</p></td>
+            <td><input id="contractPlace" type="text"></td>
+        </tr>
+        <tr style="height: 10px;"><td></td><td></td></tr>
+        </tbody></table>
+        <br>
+        <input class="button" id="contractSearch" onclick="searchContract()" type="button" value="Suche Vertrag">
+    </div>
+</div>
+<br>
+
+<script>
+
+    $(document).ready(function (){
+        validate();
+        $('#accountNumber, #accountName, #accountName2, #accountFirstname, #accountStreet, #accountHousenumber, #accountZipcode, #accountPlace').keyup(lockContractSearch);
+        $('#contractNumber, #contractStreet, #contractHousenumber, #contractPlace').keyup(lockAccountSearch);
+    });
+
+    function lockAccountSearch(){
+        $(".accountInputDiv :input[type=text]").val("").length > 0
+
+        $("#accountSearch").prop("disabled", true);
+        $("#accountSearch").attr('class', 'buttonDisabled');
+
+        $("#contractSearch").prop("disabled", false);
+        $("#contractSearch").attr('class', 'button');
+    }
+
+    function lockContractSearch(){
+        $(".contractInputDiv :input[type=text]").val("").length > 0
+
+        $("#accountSearch").prop("disabled", false);
+        $("#accountSearch").attr('class', 'button');
+
+        $("#contractSearch").prop("disabled", true);
+        $("#contractSearch").attr('class', 'buttonDisabled');
+    }
+</script>
+
+
 
 </body>
 </html>
